@@ -1,0 +1,56 @@
+.container {
+  display: grid;
+  grid-template-areas: "sidebar content";
+  grid-template-columns: 300px 1fr;
+  height: 100vh;
+  gap: 2px;
+}
+.sidebar {
+  grid-area: sidebar;
+  background-color: aliceblue;
+}
+.content {
+  grid-area: content;
+  background-color: red;
+}
+.sidebar_user p {
+  display: flex;
+  margin-left: 10px;
+}
+.sidebar_user img {
+  padding-left: 10px;
+}
+.sidebar_user {
+  display: flex;
+  align-items: center;
+}
+h2 {
+  margin-left: 3px;
+}
+
+.task-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  border-style: solid;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+.content p {
+  font-size: small;
+}
+.task-general {
+  margin-left: 20px;
+}
+.button-general {
+  background-color: transparent;
+  border: none;
+}
+.task-container p {
+  display: flex;
+}
+.radio {
+  display: flex;
+  float: left;
+}
