@@ -11,7 +11,7 @@
 }
 .content {
   grid-area: content;
-  background-color: red;
+  background-color: #aec6cf;
 }
 .sidebar_user p {
   display: flex;
@@ -37,13 +37,39 @@ h2 {
   border-right: none;
   border-top: none;
 }
+.sidebar-task {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.sidebar_projects {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-search {
+  border: none;
+  background-color: aliceblue;
+  font-family: apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  align-content: center;
+}
+button {
+  background-color: aliceblue;
+  border: none;
+  cursor: pointer;
+}
+.sidebar_menu {
+  display: flex;
+  flex-direction: column;
+}
 .content p {
   font-size: small;
 }
 .task-general {
   margin-left: 20px;
 }
-.button-general {
+.task-general button {
   background-color: transparent;
   border: none;
 }

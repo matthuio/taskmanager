@@ -2,8 +2,8 @@ import React from "react";
 import Content from "../Views/Content";
 import { fetchTasks } from "../Models/TaskModel";
 
-const ContentController = ({ changed }) => {
-  return <Content changed={changed} />;
+const ContentController = () => {
+  return <Content />;
 };
 
 export const getTasks = () => {

@@ -5,9 +5,10 @@ const TaskForm = ({ onSubmit, setChanged }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(null);
-
+  console.log(setChanged);
   const handleClick = () => {
-    setChanged((prev) => prev + 1);
+    console.log("click");
+    setChanged(Math.random());
     onSubmit(name, description, date);
   };
   return (
