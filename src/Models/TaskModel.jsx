@@ -1,9 +1,13 @@
 import axios from "axios";
 const today = new Date().toLocaleDateString();
+const email = localStorage.getItem("email")
+  ? localStorage.getItem("email")
+  : "";
+
 const url = "http://127.0.0.1:8000/api/get_task/";
 export const fetchTasks = async () => {
   try {
-    const response = await axios.post(url, { email: "email@email.com" });
+    const response = await axios.post(url, { email: email });
     const data = response.data;
     return data;
   } catch (error) {
@@ -14,7 +18,7 @@ export const fetchTasksToday = async () => {
   try {
     const response = await axios.post(
       "http://127.0.0.1:8000/api/get_task_today/",
-      { email: "email@email.com" }
+      { email: email }
     );
     const data = response.data;
     return data;
@@ -28,7 +32,7 @@ export const updateStatus = async (desc) => {
   try {
     const response = await axios.post(
       "http://127.0.0.1:8000/api/update_status/",
-      { email: "email@email.com", desc }
+      { email: email, desc }
     );
     const data = response.data;
     return data;
@@ -41,7 +45,7 @@ export const fetchTasksByQuery = async (query) => {
   try {
     const response = await axios.post(
       "http://127.0.0.1:8000/api/get_task_query/",
-      { email: "email@email.com", query }
+      { email: email, query }
     );
     const data = response.data;
     console.log(data);

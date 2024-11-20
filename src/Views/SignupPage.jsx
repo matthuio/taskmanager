@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { register } from "../Controllers/LoginPageController";
+import { redirect, useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const redirect = useNavigate();
   const handleSubmit = () => {
     register(email, username, password);
+    redirect("/");
   };
 
   return (

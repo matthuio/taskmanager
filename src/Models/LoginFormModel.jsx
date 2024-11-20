@@ -9,8 +9,13 @@ export const signin = async (email, name, password) => {
       username: name,
       password: password,
     });
-
-    console.log(response);
+    const data = response.status;
+    if (data == 200) {
+      localStorage.setItem("email", email);
+      return 200;
+    } else {
+      return 404;
+    }
   } catch (error) {
     console.log(error);
   }

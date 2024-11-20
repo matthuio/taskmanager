@@ -1,14 +1,32 @@
 import React, { useState } from "react";
 import { login } from "../Controllers/LoginPageController";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const redirect = useNavigate();
 
-  const handleSubmit = () => {
-    login(email, username, password);
-    console.log(email, username, password);
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+        email: email,
+        username: username,
+        password: password,
+      });
+      const data = response.status;
+      if (data === 200) {
+        localStorage.setItem("email", email);
+        alert("Login Successful");
+        redirect("/");
+      } else {
+        alert("Invalid Credentials");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
