@@ -5,7 +5,7 @@ import TaskCardController from "../Controllers/TaskCardController";
 import SidebarTaskController from "../Controllers/SidebarTaskController";
 import DisplayTaskForm from "../Controllers/TaskFormController";
 
-const Content = ({ changed }) => {
+const Content = ({ isChanged, setChanged }) => {
   return (
     <div className="content">
       <div>
@@ -13,9 +13,9 @@ const Content = ({ changed }) => {
       </div>
       <div className="task-general">
         <div>
-          <TaskCardController />
+          <TaskCardController isChanged={isChanged} />
         </div>
-        <DisplayTaskForm />
+        <DisplayTaskForm setChanged={setChanged} />
       </div>
     </div>
   );

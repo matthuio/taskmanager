@@ -4,12 +4,12 @@ import SidebarController from "../Controllers/SidebarController";
 import ContentController from "../Controllers/ContentController";
 
 const FrontPage = () => {
-  const [changed, setChanged] = useState(1);
-  console.log(changed);
+  const [isChanged, setChanged] = useState(1);
+  console.log(isChanged);
   return (
     <div className="container">
       <SidebarController setChanged={setChanged} />
-      <ContentController />
+      <ContentController isChanged={isChanged} setChanged={setChanged} />
     </div>
   );
 };

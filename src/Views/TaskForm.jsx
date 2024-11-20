@@ -8,7 +8,7 @@ const TaskForm = ({ onSubmit, setChanged }) => {
   console.log(setChanged);
   const handleClick = () => {
     console.log("click");
-    setChanged(Math.random());
+    setChanged((prev) => prev + 1);
     onSubmit(name, description, date);
   };
   return (

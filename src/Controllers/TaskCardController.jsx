@@ -1,21 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { fetchTasks, updateStatus } from "../Models/TaskModel";
+import {
+  fetchTasks,
+  updateStatus,
+  fetchTasksToday,
+  fetchTasksByQuery,
+} from "../Models/TaskModel";
 import TaskCard from "../Views/TaskCard";
-
-const TaskCardController = () => {
+const TaskCardController = ({ isChanged }) => {
   const [isloading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [task, setTask] = useState([]);
   const [changed, setChanged] = useState(123);
-
+  console.log(typeof isChanged);
   useEffect(() => {
     const loadTasks = async () => {
       try {
-        setLoading(true);
-        let data;
-        data = await fetchTasks();
-        setTask(data);
-        setLoading(false);
+        if (typeof isChanged !== "string") {
+          setLoading(true);
+          let data;
+          data = await fetchTasks();
+          console.log(data);
+          setTask(data);
+          setLoading(false);
+        } else if (isChanged === "String") {
+          setLoading(true);
+          let data;
+          data = await fetchTasksToday();
+          setTask(data);
+          console.log(data);
+          setLoading(false);
+        } else {
+          setLoading(true);
+          let data;
+          data = await fetchTasksByQuery(isChanged);
+          setTask(data);
+          console.log(data);
+          setLoading(false);
+        }
       } catch (error) {
         console.log(error);
         setError(error);
@@ -28,7 +49,7 @@ const TaskCardController = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [changed]);
+  }, [changed, isChanged]);
   if (isloading) {
     return <p>Loading...</p>;
   }
@@ -41,6 +62,10 @@ const TaskCardController = () => {
 export const handleUpdate = (desc) => {
   console.log("controller", desc);
   updateStatus(desc);
+};
+export const getTaskToday = async () => {
+  // isToday = true;
+  TaskCardController();
 };
 
 export default TaskCardController;
