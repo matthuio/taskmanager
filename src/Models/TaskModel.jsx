@@ -1,9 +1,6 @@
 import axios from "axios";
-const today = new Date().toLocaleDateString();
-const email = localStorage.getItem("email")
-  ? localStorage.getItem("email")
-  : "";
-
+import { fetchUserData } from "../Models/UserModel";
+const email = await fetchUserData();
 const url = "http://127.0.0.1:8000/api/get_task/";
 export const fetchTasks = async () => {
   try {

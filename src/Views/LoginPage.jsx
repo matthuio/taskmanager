@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { login } from "../Controllers/LoginPageController";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./LoginPage.css";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const redirect = useNavigate();
@@ -13,56 +12,57 @@ const LoginPage = () => {
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/login/", {
         email: email,
-        username: username,
         password: password,
       });
-      const data = response.status;
-      if (data === 200) {
-        localStorage.setItem("email", email);
+      const status = response.status;
+      const data = response.data;
+      console.log(data);
+      if (status === 200) {
+        localStorage.setItem("token", data.token);
+        document.cookie = "token =" + data.token + ";";
         alert("Login Successful");
         redirect("/");
-      } else {
-        alert("Invalid Credentials");
       }
     } catch (error) {
+      if (error.status === 404) {
+        alert("Invalid Credentials");
+      }
       console.log(error);
     }
   };
 
   return (
-    <div className="container">
-      <h1>LoginPage</h1>
-      <div className="login-form">
-        <label htmlFor="email"></label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="username"></label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          name="username"
-          placeholder="Username"
-        />
-        <label htmlFor="password"></label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={handleSubmit}>Login</button>
+    <body className="lBody">
+      <div className="containers">
+        <h1>Login</h1>
+        <div className="login-form">
+          <label htmlFor="email"></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor="password"></label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="lBtn" onClick={handleSubmit}>
+            Login
+          </button>
+          <a href="SignUp" id="?">
+            Sign Up?
+          </a>
+        </div>
       </div>
-    </div>
+    </body>
   );
 };
 

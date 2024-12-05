@@ -9,7 +9,7 @@ const Content = ({ isChanged, setChanged }) => {
   return (
     <div className="content">
       <div>
-        <h1>Content</h1>
+        <h1>Tasks</h1>
       </div>
       <div className="task-general">
         <div>
